@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def self.avarage_managment_age
     management.average(:age).to_f
   end
+
+  def self.top_oldest_non_admins
+    where.not(role: roles[:admin]).order(created_at: :desc).limit(3)
+  end
 end
