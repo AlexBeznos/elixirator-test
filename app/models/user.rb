@@ -11,6 +11,6 @@ class User < ApplicationRecord
   end
 
   def self.top_oldest_non_admins
-    where.not(role: roles[:admin]).order(created_at: :desc).limit(3)
+    where.not(role: roles[:admin]).order(:created_at).limit(3)
   end
 end
