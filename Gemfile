@@ -9,11 +9,12 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
-gem 'jbuilder', '~> 2.0'
+gem 'bootstrap-sass'
 
 gem 'pg'
 gem 'sorcery'
 gem 'faker'
+gem 'record_tag_helper', '~> 1.0'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -24,7 +25,6 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl'
-  gem 'faker'
 end
 
 group :development do
