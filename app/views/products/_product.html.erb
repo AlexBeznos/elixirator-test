@@ -1,5 +1,5 @@
 <%= div_for product, class: 'col-md-4' do %>
-  <div class="panel panel-default">
+  <div class="panel panel-default <%= 'archived' if product.archived %>">
     <div class="panel-body">
       <ul class="list-group">
         <li class="list-group-item">
@@ -10,6 +10,12 @@
           <%= price_badge(price: product.price, sale: product.sale)%>
           Price:
         </li>
+        <% if product.updater && policy(product.updater).show? %>
+          <li class="list-group-item">
+            <span class="label label-warning pull-right"><%= link_to product.updater.full_name, product.updater %></span>
+            Updater:
+          </li>
+        <% end %>
         <% unless product.sale.zero?%>
           <li class="list-group-item">
             With sale
@@ -21,7 +27,7 @@
           <%= link_to 'Edit', '#', class: 'btn btn-default edit' %>
         <% end %>
         <% if policy(product).destroy? %>
-          <%= link_to 'Archive', '#', class: 'btn btn-warning archive' %>
+          <%= link_to 'Archive', product_archivate_path(product), method: :delete, class: 'btn btn-warning archive' %>
         <% end %>
       </div>
     </div>

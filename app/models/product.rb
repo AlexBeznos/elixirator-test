@@ -1,4 +1,9 @@
 class Product < ApplicationRecord
+  belongs_to :updater,
+    foreign_key: :updated_by,
+    class_name: 'User',
+    optional: true
+
   def self.updated_during_last_week
     updated_at = Product.arel_table[:updated_at]
 
@@ -20,7 +25,15 @@ class Product < ApplicationRecord
       .order(updated_at: :desc)
   end
 
+  def self.active
+    where(archived: false)
+  end
+
   def name
     "#{title} ##{articul.upcase}"
+  end
+
+  def archivate!
+    self.update(archived: true)
   end
 end

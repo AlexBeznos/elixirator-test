@@ -1,3 +1,11 @@
-<div class="products cards">
+<div class="products">
+  <% if current_user && current_user.admin? %>
+    <div>
+      <div class="btn-group order-filter" role="group">
+        <%= link_to 'Default order', root_path, class: 'btn btn-default' %>
+        <%= link_to 'Last week employ updated', root_path(last_week_employee_updated: 'true'), class: 'btn btn-warning archive' %>
+      </div>
+    </div>
+  <% end %>
   <%= render @products %>
 </div>

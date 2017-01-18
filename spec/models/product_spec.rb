@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
+  context '.active' do
+    it 'returns only not archivated products' do
+      create(:product, title: 'expected', archived: false)
+      create(:product, title: 'unexpected', archived: true)
+
+      result = Product.active
+
+      expect(result.count).to eq(1)
+      expect(result.map(&:title)).to eq(%w(expected))
+    end
+  end
+
   context '.updated_during_last_week' do
     it 'returns products that were updated during last week except today' do
       create(:product, title: 'unexpected', updated_at: 7.days.ago)
@@ -62,6 +74,16 @@ RSpec.describe Product, type: :model do
       product = build(:product, title: 'Jones Flagship', articul: '123a4bc')
 
       expect(product.name).to eq "Jones Flagship #123A4BC"
+    end
+  end
+
+  context '#archivate!' do
+    it 'should archivate product' do
+      product = create(:product, archived: false)
+
+      product.archivate!
+
+      expect(product.archived).to eq(true)
     end
   end
 end

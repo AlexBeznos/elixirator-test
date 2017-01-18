@@ -1,9 +1,21 @@
 .product {
-  height: 240px;
+  height: 265px;
 
   .sale {
     font-size: xx-small;
     text-decoration: line-through;
     color: grey;
   }
+
+  .archived {
+    background-color: #ccc;
+    .list-group-item {
+      background-color: #ccc;
+    }
+  }
+}
+
+.order-filter {
+  margin-left: 17px;
+  margin-bottom: 10px;
 }

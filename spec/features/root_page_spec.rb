@@ -18,6 +18,10 @@ RSpec.feature "user came to root page", type: :feature do
     scenario 'should not see archive button' do
       expect(page).not_to have_selector('.product a.archive')
     end
+
+    scenario 'should not see filter' do
+      expect(page).not_to have_selector('.products .order-filter')
+    end
   end
 
   context 'as an employee user' do
@@ -38,6 +42,10 @@ RSpec.feature "user came to root page", type: :feature do
     scenario 'should not see archive button' do
       expect(page).not_to have_selector('.product a.archive')
     end
+
+    scenario 'should not see filter' do
+      expect(page).not_to have_selector('.products .order-filter')
+    end
   end
 
   context 'as an manager user' do
@@ -51,12 +59,16 @@ RSpec.feature "user came to root page", type: :feature do
       expect(page).to have_selector('.product', count: 3)
     end
 
-    scenario 'should not see edit button' do
+    scenario 'should see edit button' do
       expect(page).to have_selector('.product a.edit')
     end
 
-    scenario 'should not see archive button' do
+    scenario 'should see archive button' do
       expect(page).to have_selector('.product a.archive')
+    end
+
+    scenario 'should not see filter' do
+      expect(page).not_to have_selector('.products .order-filter')
     end
   end
 
@@ -71,12 +83,16 @@ RSpec.feature "user came to root page", type: :feature do
       expect(page).to have_selector('.product', count: 3)
     end
 
-    scenario 'should not see edit button' do
+    scenario 'should see edit button' do
       expect(page).to have_selector('.product a.edit')
     end
 
-    scenario 'should not see archive button' do
+    scenario 'should see archive button' do
       expect(page).to have_selector('.product a.archive')
+    end
+
+    scenario 'should see filter' do
+      expect(page).to have_selector('.products .order-filter')
     end
   end
 

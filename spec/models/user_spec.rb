@@ -31,6 +31,13 @@ RSpec.describe User, type: :model do
           .to match_array(%w(expected expected expected))
       end
     end
+
+    context '#full_name' do
+      it 'should concatenate first_name and last_name' do
+        user = build(:user, first_name: 'Alex', last_name: 'Beznos')
+        expect(user.full_name).to eq('Alex Beznos')
+      end
+    end
   end
 
 
