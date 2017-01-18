@@ -1,10 +1,21 @@
 <%= div_for product, class: 'col-md-4' do %>
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <%= product.title %>
-      <span class="badge pull-right"><%= product.price %></span>
-    </div>
     <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="label label-warning pull-right"><%= product.name %></span>
+          Name:
+        </li>
+        <li class="list-group-item">
+          <%= price_badge(price: product.price, sale: product.sale)%>
+          Price:
+        </li>
+        <% unless product.sale.zero?%>
+          <li class="list-group-item">
+            With sale
+          </li>
+        <% end %>
+      </ul>
       <div class="btn-group" role="group">
         <% if policy(product).edit? %>
           <%= link_to 'Edit', '#', class: 'btn btn-default edit' %>

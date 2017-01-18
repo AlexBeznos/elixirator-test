@@ -56,4 +56,12 @@ RSpec.describe Product, type: :model do
       expect(result.map(&:title)).to eq %w(expected-1 expected-2 expected-3)
     end
   end
+
+  context '#name' do
+    it 'returns well formatted name' do
+      product = build(:product, title: 'Jones Flagship', articul: '123a4bc')
+
+      expect(product.name).to eq "Jones Flagship #123A4BC"
+    end
+  end
 end

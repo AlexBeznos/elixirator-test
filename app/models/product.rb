@@ -19,4 +19,8 @@ class Product < ApplicationRecord
       .updated_during_last_week
       .order(updated_at: :desc)
   end
+
+  def name
+    "#{title} ##{articul.upcase}"
+  end
 end
