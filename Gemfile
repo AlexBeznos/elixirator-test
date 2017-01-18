@@ -15,6 +15,7 @@ gem 'pg'
 gem 'sorcery'
 gem 'faker'
 gem 'record_tag_helper', '~> 1.0'
+gem 'pundit'
 
 group :development, :test do
   gem 'rspec-rails'

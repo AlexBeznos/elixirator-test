@@ -6,9 +6,12 @@
     </div>
     <div class="panel-body">
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default">Left</button>
-        <button type="button" class="btn btn-default">Middle</button>
-        <button type="button" class="btn btn-default">Right</button>
+        <% if policy(product).edit? %>
+          <%= link_to 'Edit', '#', class: 'btn btn-default edit' %>
+        <% end %>
+        <% if policy(product).destroy? %>
+          <%= link_to 'Archive', '#', class: 'btn btn-warning archive' %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -23,6 +23,7 @@ RSpec.feature "user came to root page", type: :feature do
   context 'as an employee user' do
     before do
       create_list(:product, 3)
+      login(create(:employee))
       visit root_path
     end
 
@@ -30,7 +31,7 @@ RSpec.feature "user came to root page", type: :feature do
       expect(page).to have_selector('.product', count: 3)
     end
 
-    scenario 'should not see edit button' do
+    scenario 'should see edit button' do
       expect(page).to have_selector('.product a.edit')
     end
 
@@ -42,6 +43,7 @@ RSpec.feature "user came to root page", type: :feature do
   context 'as an manager user' do
     before do
       create_list(:product, 3)
+      login(create(:manager))
       visit root_path
     end
 
@@ -61,6 +63,7 @@ RSpec.feature "user came to root page", type: :feature do
   context 'as an admin user' do
     before do
       create_list(:product, 3)
+      login(create(:admin))
       visit root_path
     end
 
